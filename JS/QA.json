@@ -1,0 +1,53 @@
+[
+    {
+        "prompt": "Thời gian ra vào ký túc xá là gì?",
+        "completion": "Sáng: từ 5h00 đến 11h30. Chiều: từ 13h30 đến 22h00. Ra ngoài sau 22h00 phải có giấy phép của quản lý."
+    },
+
+    {
+       "prompt": "Có những nội quy nào trong phòng ở ký túc xá?",
+       "completion": "Không hút thuốc, không sử dụng chất cấm trong khuôn viên KTX. Giữ gìn vệ sinh phòng sạch sẽ, đổ rác đúng nơi quy định. Không gây ồn ào sau 22h00. Không tự ý thay đổi vị trí giường, bàn ghế."
+    },
+
+    {
+        "prompt": "Làm thế nào để bảo vệ tài sản cá nhân trong ký túc xá?",
+        "completion": "Tự bảo quản tài sản cá nhân, không để tiền hoặc vật có giá trị ở nơi công cộng. Không cho người ngoài ở lại qua đêm. Báo ngay cho quản lý nếu phát hiện hành vi bất thường."
+    },
+
+    {
+        "prompt": "Bạn có thể cho tôi biết thông tin về tòa A được không?",
+        "completion": "Tòa A có 5 tầng, tổng số 40 phòng và gần cổng chính."
+    },
+
+    {
+        "prompt": "Tòa B có những đặc điểm gì?",
+        "completion": "Tòa B có 4 tầng, tổng số 32 phòng và có phòng tự học."
+    },
+
+    {
+        "prompt": "Thông tin hóa đơn HD001 là gì?",
+        "completion": "Hóa đơn HD001 thuộc về sinh viên Nguyễn Văn A, phòng A101, tháng 03/2025, số tiền 1.200.000đ, ngày tạo 01/04/2025, trạng thái chưa thanh toán."
+    },
+
+    {
+        "prompt": "Hóa đơn HD002 có trạng thái gì?",
+        "completion": "Hóa đơn HD002 thuộc về sinh viên Trần Thị B, phòng B202, tháng 03/2025, số tiền 1.200.000đ, ngày tạo 01/04/2025, và đã được thanh toán."
+    },
+
+    {
+        "prompt": "Hóa đơn HD003 có những thông tin gì?",
+        "completion": "Hóa đơn HD003 thuộc về sinh viên Lê Văn C, phòng C303, tháng 03/2025, số tiền 1.500.000đ, ngày tạo 01/04/2025, trạng thái chưa thanh toán."
+    },
+
+    {
+        "prompt": "Tổng số tiền chưa thanh toán là bao nhiêu?",
+        "completion": "Tổng số tiền chưa thanh toán là 2.700.000đ, bao gồm hóa đơn HD001 và HD003."
+    },
+
+    {
+        "prompt": "Có những hóa đơn nào chưa thanh toán?",
+        "completion": "Hóa đơn HD001 của Nguyễn Văn A và hóa đơn HD003 của Lê Văn C đều chưa thanh toán."
+    }
+
+
+]
