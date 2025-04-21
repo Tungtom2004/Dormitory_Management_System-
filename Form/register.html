@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký thông tin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2 class="form-title">Đăng ký thông tin</h2>
+
+            <!-- Thông báo lỗi -->
+            <div id="error-message" class="alert alert-danger" role="alert" style="display: none;">
+                <i class="fa fa-exclamation-circle"></i> <span id="error-content"></span>
+            </div>
+
+            <!-- Thông báo thành công -->
+            <div id="success-message" class="alert alert-success" role="alert" style="display: none;">
+                <i class="fa fa-check-circle"></i> Đăng ký thành công! Thông tin đã được lưu vào file.
+            </div>
+
+            <form action="process.php" method="POST" class="form-horizontal">
+                <div class="form-group">
+                    <label for="lastname" class="control-label">Họ</label>
+                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Nhập họ của bạn" required>
+                </div>
+                <div class="form-group">
+                    <label for="firstname" class="control-label">Tên</label>
+                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Nhập tên của bạn" required>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="control-label">Mật khẩu</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu của bạn" required>
+                    <small class="text-muted">Mật khẩu phải có ít nhất 6 ký tự</small>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="control-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Nhập email của bạn" required>
+                </div>
+                <div class="form-group">
+                    <label for="birthdate" class="control-label">Ngày sinh</label>
+                    <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                        <input type="text" class="form-control" id="birthdate" name="birthdate" placeholder="dd/mm/yyyy" required>
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Giới tính</label>
+                    <div class="gender-options">
+                        <label class="radio-inline">
+                            <input type="radio" name="gender" value="Nam" required> Nam
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="gender" value="Nữ"> Nữ
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="gender" value="Khác"> Khác
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="city" class="control-label">Thành phố</label>
+                    <select class="form-control" id="city" name="city" required>
+                        <option value="">--Mời chọn--</option>
+                        <option value="Hà Nội">Hà Nội</option>
+                        <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                        <option value="Đà Nẵng">Đà Nẵng</option>
+                        <option value="Cần Thơ">Cần Thơ</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="description" class="control-label">Mô tả bản thân</label>
+                    <textarea class="form-control" id="description" name="description" rows="4" placeholder="Nhập mô tả bản thân"></textarea>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary">Đăng ký</button>
+                    <button type="reset" class="btn btn-default">Làm lại</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.vi.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.date').datepicker({
+                format: 'dd/mm/yyyy',
+                language: 'vi',
+                autoclose: true,
+                todayHighlight: true
+            });
+
+            // Kiểm tra thông báo thành công
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('success')) {
+                $('#success-message').show();
+                setTimeout(function() {
+                    $('#success-message').fadeOut('slow');
+                }, 5000);
+            }
+
+            // Kiểm tra thông báo lỗi
+            if (urlParams.has('error')) {
+                $('#error-content').html(urlParams.get('error'));
+                $('#error-message').show();
+            }
+
+            // Khôi phục giá trị form nếu có lỗi
+            $('#lastname').val(urlParams.get('lastname'));
+            $('#firstname').val(urlParams.get('firstname'));
+            $('#email').val(urlParams.get('email'));
+            $('#birthdate').val(urlParams.get('birthdate'));
+            $("input[name='gender'][value='" + urlParams.get('gender') + "']").prop('checked', true);
+            $('#city').val(urlParams.get('city'));
+            $('#description').val(urlParams.get('description'));
+        });
+    </script>
+</body>
+</html>
