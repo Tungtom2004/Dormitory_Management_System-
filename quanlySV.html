@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý Sinh viên</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="CSS/qlsv.css">
+  <script src = "JS/QLSV.js"></script>
+ 
+  <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+
+  <h1>Trang Quản lý Sinh viên</h1>
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Tìm theo tên hoặc ID...">
+    <button onclick="searchStudent()">Tìm kiếm</button>
+  </div>
+
+  <div class="form-container">
+    <h3>Thêm/Sửa Sinh viên</h3>
+    <input type="text" id="StudentID" placeholder="Mã SV">
+    <input type="text" id="FirstName" placeholder="Họ">
+    <input type="text" id="MiddleName" placeholder="Tên đệm">
+    <input type="text" id="LastName" placeholder="Tên">
+    <input type="date" id="Date_of_birth">
+    <input type="text" id="Address" placeholder="Địa chỉ">
+    <select id="Gender">
+      <option value="Nam">Nam</option>
+      <option value="Nữ">Nữ</option>
+    </select>
+    <input type="text" id="PhoneNumber" placeholder="SĐT">
+    <input type="text" id="EmailAddress" placeholder="Email">
+    <button onclick="addOrEditStudent()">Thêm/Sửa</button>
+  </div>
+
+  <table id="studentTable">
+    <thead>
+      <tr>
+        <th>Mã SV</th>
+        <th>Họ</th>
+        <th>Tên đệm</th>
+        <th>Tên</th>
+        <th>Ngày sinh</th>
+        <th>Địa chỉ</th>
+        <th>Giới tính</th>
+        <th>SĐT</th>
+        <th>Email</th>
+        <th>Hành động</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Dữ liệu sinh viên sẽ được thêm vào đây bằng JavaScript -->
+    </tbody>
+  </table>
+
+  <a href="index.html" class="back-home">← Quay lại trang chủ</a>
+
+</body>
+</html>

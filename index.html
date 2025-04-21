@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống Quản lý Ký túc xá Sinh viên</title>
+    <!-- Bootstrap 3 CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="CSS/style.css">
+    <script src = "JS/API_GPT.js"></script>
+    <script src = "JS/darkmode.js"></script>
+
+</head>
+<body>
+    <!-- Chat bot -->
+    <div id="chatbot-icon">🤖</div>
+    <!-- Chatbot Container -->
+    <div id="chatbot-container" class="hidden">
+      <div id="chatbot-header">
+        <span>KTXBot</span>
+        <button id="close-btn">X</button>
+      </div>
+      <div id="chatbot-body">
+        <div id="chatbot-messages"></div>
+      </div>
+      <div id="chatbot-input-container">
+        <input type="text" id="chatbot-input" placeholder="Nhập tin nhắn..." />
+        <button id="send-btn">Gửi</button>
+      </div>
+    </div>
+    <!-- Navbar -->
+     
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <i class="fa fa-university"></i> Quản lý Ký Túc Xá  
+                </a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="hoso.html"><i class="fa fa-user"></i> Hồ sơ</a></li>
+                    <!-- <li><a href="#"><i class="fa fa-bell"></i> Thông báo <span class="badge badge-notify">5</span></a></li> -->
+                    <li><a href="login.html"><i class="fa fa-sign-out"></i> Đăng xuất</a></li>
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li class="active"><a href="#"><i class="fa fa-home"></i> Trang chủ <span class="sr-only">(current)</span></a></li>
+                    <li><a href="toanha.html"><i class="fa fa-building"></i> Quản lý Tòa nhà</a></li>
+                    <li><a href="roommana.html"><i class="fa fa-bed"></i> Quản lý Phòng</a></li>
+                    <li><a href="quanlySV.html"><i class="fa fa-users"></i> Quản lý Sinh viên</a></li>
+                    <li><a href="room.html"><i class="fa fa-key"></i> Đăng ký phòng</a></li>
+                    <li><a href="thanhtoan.html"><i class="fa fa-credit-card"></i> Hóa đơn & Thanh toán</a></li>
+                    <li><a href="baotri.html"><i class="fa fa-wrench"></i> Bảo trì & Sửa chữa</a></li>
+                    <li><a href="Suco.html"><i class="fa fa-exclamation-triangle"></i> Báo cáo sự cố</a></li>
+                </ul>
+                <ul class="nav nav-sidebar">
+                    <li><a href="thongbao.html"><i class="fa fa-bullhorn"></i> Thông báo</a></li>
+                    <li><a href="quydinh.html"><i class="fa fa-file-text"></i> Quy định KTX</a></li>
+                </ul>
+            </div>
+
+            <!-- Main content -->
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <div class="welcome-message animate__animated animate__fadeIn">
+                    <h1>Xin chào, Quản trị viên!</h1>
+                    <p>Chào mừng đến với Hệ thống Quản lý Ký túc xá Sinh viên.</p>
+                </div>
+
+                <!-- Dashboard Stats -->
+                <div class="row staggered">
+                    <div class="col-md-3">
+                        <div class="stats-box animate__animated animate__fadeInUp">
+                            <i class="fa fa-users"></i>
+                            <h2 class="counter">50</h2>
+                            <p>Tổng số sinh viên</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stats-box animate__animated animate__fadeInUp">
+                            <i class="fa fa-building"></i>
+                            <h2 class="counter">3</h2>
+                            <p>Tòa nhà</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stats-box animate__animated animate__fadeInUp">
+                            <i class="fa fa-bed"></i>
+                            <h2 class="counter">24</h2>
+                            <p>Phòng sẵn có</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stats-box animate__animated animate__fadeInUp">
+                            <i class="fa fa-exclamation-circle"></i>
+                            <h2 class="counter">23</h2>
+                            <p>Yêu cầu đang chờ</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="dashboard-box animate__animated animate__fadeInLeft">
+                            <h4><i class="fa fa-bolt"></i>Thao tác</h4>
+                            <div class="list-group">
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-key"></i> Phân phòng cho sinh viên
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-money"></i> Xử lý thanh toán
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-print"></i> In báo cáo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dashboard-box animate__animated animate__fadeInRight">
+                            <h4><i class="fa fa-bullhorn"></i> Thông báo gần đây</h4>
+                            <div class="list-group">
+                                <a href="#" class="list-group-item">
+                                    <h5 class="list-group-item-heading">Bảo trì hệ thống nước</h5>
+                                    <p class="list-group-item-text">Hệ thống nước sẽ bảo trì vào ngày 10/04/2025</p>
+                                    <small>2 giờ trước</small>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <h5 class="list-group-item-heading">Đăng ký phòng cho học kỳ mới</h5>
+                                    <p class="list-group-item-text">Thời gian đăng ký bắt đầu từ 15/04/2025</p>
+                                    <small>1 ngày trước</small>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <h5 class="list-group-item-heading">Kiểm tra phòng tháng 4</h5>
+                                    <p class="list-group-item-text">Sẽ diễn ra từ ngày 20 đến 25/04/2025</p>
+                                    <small>2 ngày trước</small>
+                                </a>
+                                <a href="#" class = list-group-item>
+                                    <h5 class = "list-group-item-heading">Lịch cắt điện tháng 5</h5>
+                                    <p class = "list-group-item-text">Thời gian cắt điện: 07:00 - 12:00 ngày 03/05/2025</p>
+                                    <small>13 tiếng trước</small>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Students Table -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="page-header animate__animated animate__fadeIn">Sinh viên đăng ký gần đây</h2>
+                        <div class="table-responsive animate__animated animate__fadeIn">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Mã SV</th>
+                                        <th>Họ và tên</th>
+                                        <th>Khoa</th>
+                                        <th>Phòng</th>
+                                        <th>Ngày đăng ký</th>
+                                        <th>Trạng thái</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="fade-in">
+                                        <td>SV001</td>
+                                        <td>Nguyen Thi Lan</td>
+                                        <td>Công nghệ thông tin</td>
+                                        <td>203-A</td>
+                                        <td>05/04/2025</td>
+                                        <td><span class="label label-success">Đã duyệt</span></td>
+                                    <tr class="fade-in">
+                                        <td>SV002</td>
+                                        <td>Tran Thi Mai</td>
+                                        <td>Quản trị kinh doanh</td>
+                                        <td>105-B</td>
+                                        <td>04/04/2025</td>
+                                        <td><span class="label label-success">Đã duyệt</span></td>
+                                    </tr>
+                                    <tr class="fade-in">
+                                        <td>SV003</td>
+                                        <td>Le Thi Thanh</td>
+                                        <td>Điện tử-Viễn thông</td>
+                                        <td>308-C</td>
+                                        <td>04/04/2025</td>
+                                        <td><span class="label label-warning">Đang xử lý</span></td>
+                                    </tr>
+                                    <tr class="fade-in">
+                                        <td>SV004</td>
+                                        <td>Phan Thi Anh</td>
+                                        <td>Kỹ thuật điện- điện tử</td>
+                                        <td>105-A</td>
+                                        <td>03/04/2025</td>
+                                        <td><span class="label label-warning">Đang xử lý</span></td>
+                                    </tr>
+                                    <tr class="fade-in">
+                                        <td>SV005</td>
+                                        <td>Hoang Thi Linh</td>
+                                        <td>Báo chí</td>
+                                        <td>205-B</td>
+                                        <td>02/04/2025</td>
+                                        <td><span class="label label-danger">Từ chối</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Issues Table -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="page-header animate__animated animate__fadeIn">Sự cố gần đây</h2>
+                        <div class="table-responsive animate__animated animate__fadeIn">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Mã</th>
+                                        <th>Tiêu đề</th>
+                                        <th>Phòng</th>
+                                        <th>Người báo cáo</th>
+                                        <th>Ngày báo cáo</th>
+                                        <th>Mức độ</th>
+                                        <th>Trạng thái</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="fade-in">
+                                        <td>SC0123</td>
+                                        <td>Hỏng ổ khóa cửa</td>
+                                        <td>203-A</td>
+                                        <td>Nguyen Thi Lan</td>
+                                        <td>06/04/2025</td>
+                                        <td><span class="label label-warning">Trung bình</span></td>
+                                        <td><span class="label label-info">Đang xử lý</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                                    

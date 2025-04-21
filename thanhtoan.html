@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hóa đơn & Thanh toán</title>
+  <link rel="stylesheet" href="CSS/thanhtoan.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Quản lý Hóa đơn & Thanh toán</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Mã hóa đơn</th>
+          <th>Sinh viên</th>
+          <th>Phòng</th>
+          <th>Tháng</th>
+          <th>Số tiền</th>
+          <th>Ngày tạo</th>
+          <th>Trạng thái</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>HD001</td>
+          <td>Nguyễn Văn A</td>
+          <td>A101</td>
+          <td>03/2025</td>
+          <td>1.200.000đ</td>
+          <td>01/04/2025</td>
+          <td><span class="status unpaid">Chưa thanh toán</span></td>
+          <td><button class="btn-pay">Thanh toán</button></td>
+        </tr>
+        <tr>
+          <td>HD002</td>
+          <td>Trần Thị B</td>
+          <td>B202</td>
+          <td>03/2025</td>
+          <td>1.200.000đ</td>
+          <td>01/04/2025</td>
+          <td><span class="status paid">Đã thanh toán</span></td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>HD003</td>
+          <td>Lê Văn C</td>
+          <td>C303</td>
+          <td>03/2025</td>
+          <td>1.500.000đ</td>
+          <td>01/04/2025</td>
+          <td><span class="status unpaid">Chưa thanh toán</span></td>
+          <td><button class="btn-pay">Thanh toán</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

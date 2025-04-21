@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đăng ký phòng</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script>
+    function showSuccess() {
+      alert("🎉 Đăng ký phòng thành công!");
+      window.location.href = "index.html"; // Chuyển hướng về trang chính
+      return false; // Ngăn form reload lại trang
+    }
+  </script>
+</head>
+
+<body class="bg-blue-50 min-h-screen flex items-center justify-center">
+  <div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-2xl">
+    <h2 class="text-2xl font-bold mb-6 text-blue-600">Đăng ký phòng ở</h2>
+
+    <form class="grid grid-cols-1 md:grid-cols-2 gap-4" onsubmit="return showSuccess()">
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Mã sinh viên</label>
+        <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="VD: SV123456" required>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Họ tên</label>
+        <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Nguyễn Văn A" required>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Lớp</label>
+        <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="DHKTPM17A" required>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Giới tính</label>
+        <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
+          <option>Nam</option>
+          <option>Nữ</option>
+          <option>Khác</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Số điện thoại</label>
+        <input type="tel" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="098xxxxxxx" required>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Ngày đăng ký</label>
+        <input type="date" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
+      </div>
+
+      <div class="md:col-span-2">
+        <label class="block text-sm font-medium text-gray-700">Chọn phòng</label>
+        <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
+          <option value="">-- Chọn phòng --</option>
+          <option>Phòng 101</option>
+          <option>Phòng 102</option>
+          <option>Phòng 103</option>
+          <option>Phòng 104</option>
+        </select>
+      </div>
+
+      <div class="md:col-span-2">
+        <label class="block text-sm font-medium text-gray-700">Ghi chú</label>
+        <textarea class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" rows="3" placeholder="Nếu có yêu cầu đặc biệt..."></textarea>
+      </div>
+
+      <div class="md:col-span-2 text-right">
+        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-xl shadow hover:bg-blue-700 transition duration-300">
+          Đăng ký
+        </button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
