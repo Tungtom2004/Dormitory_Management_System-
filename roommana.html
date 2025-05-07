@@ -5,15 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Quản lý Phòng</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <script src="JS/QLRoom.js" defer></script>
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-blue-100 min-h-screen py-10 px-4">
   <div class="max-w-7xl mx-auto">
     <div class="bg-white shadow-2xl rounded-2xl p-8">
       <div class="flex items-center justify-between mb-6">
         <h1 class="text-3xl font-bold text-blue-700">🏠 Quản lý Phòng</h1>
-        <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg shadow">
+        <button onclick="toggleRoomForm()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg shadow">
           ➕ Thêm phòng
         </button>
+      </div>
+      <div class="flex items-center space-x-2 mb-4">
+        <input id="searchRoomID" type="text" placeholder="Nhập mã phòng (VD: 101-A)" class="border px-3 py-2 rounded">
+        <button onclick="searchRoom()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">🔍 Tìm</button>
+      </div>
+      
+      <!-- Form thêm phòng -->
+      <div id="roomForm" class="hidden mb-6 bg-gray-100 p-4 rounded-lg shadow-inner">
+        <div class="grid grid-cols-1 md:grid-cols-6 gap-4">
+          <input type="text" id="Room_ID" placeholder="Mã phòng (VD: 101-A)" class="border px-2 py-1 rounded">
+          <input type="number" id="number_of_Students" placeholder="Số SV hiện tại" class="border px-2 py-1 rounded">
+          <input type="text" id="Size_of_room" placeholder="Kích thước (Nhỏ/Trung/Lớn)" class="border px-2 py-1 rounded">
+          <input type="number" id="Capacity" placeholder="Sức chứa" class="border px-2 py-1 rounded">
+          <input type="text" id="Gender" placeholder="Giới tính (Nam/Nữ/N?)" class="border px-2 py-1 rounded">
+          <input type="text" id="Dormitory_ID" placeholder="Mã tòa nhà" class="border px-2 py-1 rounded">
+          <button onclick="addRoom()" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">Lưu</button>
+        </div>
       </div>
 
       <div class="overflow-x-auto">
@@ -22,54 +40,25 @@
             <tr>
               <th class="px-6 py-3 text-left">STT</th>
               <th class="px-6 py-3 text-left">Mã phòng</th>
-              <th class="px-6 py-3 text-left">Tên phòng</th>
-              <th class="px-6 py-3 text-left">Tòa nhà</th>
+              <th class="px-6 py-3 text-left">Kích thước</th>
+              <th class="px-6 py-3 text-left">Tòa</th>
               <th class="px-6 py-3 text-left">Sức chứa</th>
-              <th class="px-6 py-3 text-left">Trạng thái</th>
+              <th class="px-6 py-3 text-left">Số SV</th>
+              <th class="px-6 py-3 text-left">Giới tính</th>
               <th class="px-6 py-3 text-left">Thao tác</th>
             </tr>
           </thead>
-          <tbody class="bg-white text-gray-800 divide-y divide-gray-200">
-            <tr class="hover:bg-blue-50 transition duration-200">
-              <td class="px-6 py-4">1</td>
-              <td class="px-6 py-4">P101</td>
-              <td class="px-6 py-4">Phòng 101</td>
-              <td class="px-6 py-4">Tòa A</td>
-              <td class="px-6 py-4">4 người</td>
-              <td class="px-6 py-4 text-green-600 font-medium">Còn trống</td>
-              <td class="px-6 py-4 space-x-2">
-                <button class="text-blue-600 hover:text-blue-800 font-medium">Sửa</button>
-                <button class="text-red-600 hover:text-red-800 font-medium">Xóa</button>
-              </td>
-            </tr>
-            <tr class="hover:bg-blue-50 transition duration-200">
-              <td class="px-6 py-4">2</td>
-              <td class="px-6 py-4">P102</td>
-              <td class="px-6 py-4">Phòng 102</td>
-              <td class="px-6 py-4">Tòa A</td>
-              <td class="px-6 py-4">4 người</td>
-              <td class="px-6 py-4 text-red-600 font-medium">Đã đầy</td>
-              <td class="px-6 py-4 space-x-2">
-                <button class="text-blue-600 hover:text-blue-800 font-medium">Sửa</button>
-                <button class="text-red-600 hover:text-red-800 font-medium">Xóa</button>
-              </td>
-            </tr>
-            <tr class="hover:bg-blue-50 transition duration-200">
-              <td class="px-6 py-4">3</td>
-              <td class="px-6 py-4">P201</td>
-              <td class="px-6 py-4">Phòng 201</td>
-              <td class="px-6 py-4">Tòa B</td>
-              <td class="px-6 py-4">6 người</td>
-              <td class="px-6 py-4 text-green-600 font-medium">Còn trống</td>
-              <td class="px-6 py-4 space-x-2">
-                <button class="text-blue-600 hover:text-blue-800 font-medium">Sửa</button>
-                <button class="text-red-600 hover:text-red-800 font-medium">Xóa</button>
-              </td>
-            </tr>
+          <tbody class="bg-white text-gray-800 divide-y divide-gray-200" id="roomTableBody">
+            <!-- Dữ liệu phòng sẽ được thêm vào đây bằng JavaScript -->
           </tbody>
         </table>
       </div>
     </div>
+  </div>
+  <div class="mt-8 text-center">
+    <a href="index.html" class="inline-block bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow">
+      Quay lại trang chủ
+    </a>
   </div>
 </body>
 </html>

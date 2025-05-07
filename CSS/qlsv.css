@@ -39,3 +39,21 @@ h1 {
     background-color: #007bff;
     color: white;
   }
+  .action-btn {
+    padding: 3px 6px;
+    margin: 0 2px;
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .edit-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+  }
+  .delete-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+  }
+  
