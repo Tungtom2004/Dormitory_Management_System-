@@ -19,7 +19,7 @@ if(!$conn){
 $data = json_decode(file_get_contents("php://input"), true);
 
 $sql = "INSERT INTO Student 
-(StudentID, FirstName, MiddleName, LastName, Date_of_Birth, Address, Gender, PhoneNumber, EmailAddress)
+(StudentID, firstName, middleName, lastName, Date_of_Birth, Address, Gender, phoneNumber, EmailAddress)
 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 $params = [

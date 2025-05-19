@@ -4,69 +4,95 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Đăng ký phòng</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <script>
-    function showSuccess() {
-      alert("🎉 Đăng ký phòng thành công!");
-      window.location.href = "index.html"; // Chuyển hướng về trang chính
-      return false; // Ngăn form reload lại trang
-    }
-  </script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
 </head>
 
 <body class="bg-blue-50 min-h-screen flex items-center justify-center">
   <div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-2xl">
     <h2 class="text-2xl font-bold mb-6 text-blue-600">Đăng ký phòng ở</h2>
 
-    <form class="grid grid-cols-1 md:grid-cols-2 gap-4" onsubmit="return showSuccess()">
+    <!-- ACTION: trỏ đến file xử lý backend -->
+    <form class="grid grid-cols-1 md:grid-cols-2 gap-4" method="POST" action="BE/register_room.php">
       <div>
         <label class="block text-sm font-medium text-gray-700">Mã sinh viên</label>
-        <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="VD: SV123456" required>
+        <input name="StudentID" type="text" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="VD: SV123456" />
       </div>
 
       <div>
         <label class="block text-sm font-medium text-gray-700">Họ tên</label>
-        <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Nguyễn Văn A" required>
+        <input name="firstName" type="text" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Nguyễn" />
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700">Lớp</label>
-        <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="DHKTPM17A" required>
+        <label class="block text-sm font-medium text-gray-700">Tên đệm</label>
+        <input type="text" name="middleName" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Văn" />
+      </div>
+      
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Tên</label>
+        <input type="text" name="lastName" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="A" />
       </div>
 
       <div>
         <label class="block text-sm font-medium text-gray-700">Giới tính</label>
-        <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
-          <option>Nam</option>
-          <option>Nữ</option>
-          <option>Khác</option>
+        <select name="Gender" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
+          <option value="Nam">Nam</option>
+          <option value="Nữ">Nữ</option>
+          <option value="Khác">Khác</option>
         </select>
       </div>
 
       <div>
         <label class="block text-sm font-medium text-gray-700">Số điện thoại</label>
-        <input type="tel" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="098xxxxxxx" required>
+        <input name="phoneNumber" type="tel" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="098xxxxxxx" />
       </div>
 
       <div>
         <label class="block text-sm font-medium text-gray-700">Ngày đăng ký</label>
-        <input type="date" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
+        <input name="regDate" type="date" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" />
       </div>
 
       <div class="md:col-span-2">
         <label class="block text-sm font-medium text-gray-700">Chọn phòng</label>
-        <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
+        <select name="Room_ID" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
           <option value="">-- Chọn phòng --</option>
-          <option>Phòng 101</option>
-          <option>Phòng 102</option>
-          <option>Phòng 103</option>
-          <option>Phòng 104</option>
+          <option value="101-A">Phòng 101-A</option>
+          <option value="101-B">Phòng 101-B</option>
+          <option value="101-C">Phòng 101-C</option>
+          <option value="102-A">Phòng 102-A</option>
+          <option value="102-B">Phòng 102-B</option>
+          <option value="102-C">Phòng 102-C</option>
+          <option value="103-C">Phòng 103-C</option>
+          <option value="201-A">Phòng 201-A</option>
+          <option value="201-B">Phòng 201-B</option>
+          <option value="201-C">Phòng 201-C</option>
+          <option value="202-A">Phòng 202-A</option>
+          <option value="202-B">Phòng 202-B</option>
+          <option value="202-C">Phòng 202-C</option>
+          <option value="203-A">Phòng 203-A</option>
+          <option value="203-C">Phòng 203-C</option>
+          <option value="204-C">Phòng 204-C</option>
+          <option value="301-A">Phòng 301-A</option>
+          <option value="301-B">Phòng 301-B</option>
+          <option value="302-A">Phòng 302-A</option>
+          <option value="302-B">Phòng 302-B</option>
+          <option value="303-A">Phòng 303-A</option>
+          <option value="304-A">Phòng 304-A</option>
+          <option value="401-B">Phòng 401-B</option>
+          <option value="402-B">Phòng 402-B</option>
+          <option value="501-B">Phòng 501-B</option>
+          <option value="502-B">Phòng 502-B</option>
         </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Mã người quản lý</label>
+        <input name="PersonalID_DM" type="text" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="000001" />
       </div>
 
       <div class="md:col-span-2">
         <label class="block text-sm font-medium text-gray-700">Ghi chú</label>
-        <textarea class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" rows="3" placeholder="Nếu có yêu cầu đặc biệt..."></textarea>
+        <textarea name="note" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Nếu có yêu cầu đặc biệt..."></textarea>
       </div>
 
       <div class="md:col-span-2 text-right">

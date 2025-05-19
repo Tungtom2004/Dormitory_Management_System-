@@ -4,13 +4,13 @@ let editingStudentID = null;
 function addStudent(){
   const data = {
     StudentID: document.getElementById("StudentID").value,
-    FirstName: document.getElementById("firstName").value,
-    MiddleName: document.getElementById("middleName").value,
-    LastName: document.getElementById("lastName").value,
-    Date_of_birth: document.getElementById('Date_of_Birth').value,
+    firstName: document.getElementById("firstName").value,
+    middleName: document.getElementById("middleName").value,
+    lastName: document.getElementById("lastName").value,
+    Date_of_Birth: document.getElementById('Date_of_Birth').value,
     Address: document.getElementById("Address").value,
     Gender: document.getElementById("Gender").value,
-    PhoneNumber: document.getElementById("phoneNumber").value,
+    phoneNumber: document.getElementById("phoneNumber").value,
     EmailAddress: document.getElementById("EmailAddress").value,
   };
 
@@ -62,12 +62,12 @@ function searchStudent(){
     });
 }
 
-function deleteStudent(studentID){
+function deleteStudent(StudentID){
   if (confirm("Bạn có chắc chắn muốn xóa sinh viên này?")) {
     fetch("../BE/delete_student.php", {
       method: 'POST',
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({ StudentID: studentID })
+      body: JSON.stringify({ StudentID: StudentID })
     })
     .then(res => res.json())
     .then(res => {
@@ -82,7 +82,7 @@ function deleteStudent(studentID){
   }
 }
 
-function editStudent(studentID) {
+function editStudent(StudentID) {
   const row = [...document.querySelectorAll("#studentTable tbody tr")]
     .find(r => r.firstElementChild.textContent === studentID);
 
@@ -101,17 +101,17 @@ function editStudent(studentID) {
 
   const actionCell = cells[9];
   actionCell.innerHTML = `
-    <button onclick="saveInlineStudent('${studentID}', this)">Lưu</button>
+    <button onclick="saveInlineStudent('${StudentID}', this)">Lưu</button>
     <button onclick="cancelInlineEdit()">Hủy</button>
   `;
 }
 
-function saveInlineStudent(studentID, btn) {
+function saveInlineStudent(StudentID, btn) {
   const row = btn.closest("tr");
   const cells = row.querySelectorAll("td");
 
   const data = {
-    StudentID: studentID,
+    StudentID: StudentID,
     firstName: cells[1].querySelector("input").value,
     middleName: cells[2].querySelector("input").value,
     lastName: cells[3].querySelector("input").value,

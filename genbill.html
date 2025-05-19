@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Thêm hóa đơn thủ công</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="JS/generate_bills.js" defer></script>
+</head>
+<body class="bg-gray-100 p-8">
+  <div class="max-w-6xl mx-auto bg-white p-6 rounded shadow">
+    <h1 class="text-2xl font-bold text-blue-700 mb-6">Thêm hóa đơn</h1>
+
+    <form action="BE/save_manual_bills.php" method="POST">
+      <table class="table-auto w-full border mb-4 text-sm" id="billTable">
+        <thead class="bg-gray-200">
+          <tr>
+            <th class="border px-2 py-1">Bill_ID</th>
+            <th class="border px-2 py-1">Bill_Type</th>
+            <th class="border px-2 py-1">Amount_Due</th>
+            <th class="border px-2 py-1">Due_Date</th>
+            <th class="border px-2 py-1">Payment_Status</th>
+            <th class="border px-2 py-1">StudentID</th>
+            <th class="border px-2 py-1">PersonalID_O</th>
+            <th class="border px-2 py-1">🗑</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+
+        </tbody>
+      </table>
+
+      <div class="flex justify-between">
+        <button type="button" onclick="addRow()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"> Thêm dòng</button>
+        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">Lưu hóa đơn</button>
+      </div>
+    </form>
+    <div class="mt-6">
+        <a href="index.html" class="inline-block bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400">
+            Quay lại trang chủ
+        </a>
+    </div>
+
+  </div>
+</body>
+</html>

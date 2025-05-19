@@ -1,3 +1,8 @@
+<?php
+session_start();
+$username = $_SESSION['username'] ?? 'admin'; // thay 'admin' bằng mặc định nếu chưa đăng nhập
+?>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -5,40 +10,102 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hồ sơ người dùng</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script>
+    let isEditing = false;
+
+    function toggleEdit() {
+      const button = document.getElementById("editButton");
+      const saveGroup = document.getElementById("saveGroup");
+
+      const fields = ["employeeid", "name", "gender", "phone", "address"];
+      fields.forEach(id => {
+        const el = document.getElementById(id);
+        const value = el.textContent;
+        const input = document.createElement("input");
+        input.value = value;
+        input.className = "w-full border px-2 py-1 rounded";
+        el.innerHTML = "";
+        el.appendChild(input);
+      });
+
+      isEditing = true;
+      button.classList.add("hidden");
+      saveGroup.classList.remove("hidden");
+    }
+
+    function cancelEdit() {
+      location.reload(); // đơn giản là reload lại trang
+    }
+
+    function saveEdit() {
+      const data = {
+        username: "<?php echo $username ?>",
+        employeeid: document.querySelector("#employeeid input").value,
+        fullname: document.querySelector("#name input").value,
+        gender: document.querySelector("#gender input").value,
+        phonenumber: document.querySelector("#phone input").value,
+        address: document.querySelector("#address input").value
+      };
+
+      fetch("../BE/update_profile.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      })
+        .then(res => res.json())
+        .then(res => {
+          alert(res.message);
+          if (res.success) location.reload();
+        })
+        .catch(err => {
+          alert("Lỗi khi cập nhật thông tin!");
+          console.error(err);
+        });
+    }
+  </script>
 </head>
+
 <body class="bg-gradient-to-br from-blue-50 to-blue-100 min-h-screen flex items-center justify-center p-4">
   <div class="bg-white rounded-2xl shadow-xl p-8 w-full max-w-3xl">
     <div class="flex items-center justify-between mb-6">
       <h1 class="text-3xl font-bold text-blue-700">👤 Hồ sơ cá nhân</h1>
-      <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg shadow transition">
+      <button id="editButton" onclick="toggleEdit()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg shadow">
         ✏️ Chỉnh sửa hồ sơ
       </button>
+      <div id="saveGroup" class="hidden space-x-2">
+        <button onclick="saveEdit()" class="bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded-lg shadow">
+          💾 Lưu
+        </button>
+        <button onclick="cancelEdit()" class="bg-gray-400 hover:bg-gray-500 text-white font-semibold px-4 py-2 rounded-lg shadow">
+          ❌ Hủy
+        </button>
+      </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-800">
       <div>
         <p class="font-medium text-gray-500">📄 Mã nhân viên</p>
-        <p class="text-lg font-semibold">NV001</p>
+        <p id="employeeid" class="text-lg font-semibold">NV001</p>
       </div>
 
       <div>
         <p class="font-medium text-gray-500">👤 Họ tên</p>
-        <p class="text-lg font-semibold">Nguyễn Văn A</p>
+        <p id="name" class="text-lg font-semibold">Nguyễn Văn A</p>
       </div>
 
       <div>
         <p class="font-medium text-gray-500">⚧️ Giới tính</p>
-        <p class="text-lg font-semibold">Nam</p>
+        <p id="gender" class="text-lg font-semibold">Nam</p>
       </div>
 
       <div>
         <p class="font-medium text-gray-500">📞 Số điện thoại</p>
-        <p class="text-lg font-semibold">0987654321</p>
+        <p id="phone" class="text-lg font-semibold">0987654321</p>
       </div>
 
       <div>
         <p class="font-medium text-gray-500">🏠 Địa chỉ</p>
-        <p class="text-lg font-semibold">Hà Nội</p>
+        <p id="address" class="text-lg font-semibold">Hà Nội</p>
       </div>
 
       <div class="md:col-span-2">
@@ -49,3 +116,4 @@
   </div>
 </body>
 </html>
+
